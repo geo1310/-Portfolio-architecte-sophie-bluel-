@@ -20,7 +20,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -30,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+
 }
 ol, ul {
 	list-style: none;
@@ -50,7 +50,7 @@ table {
 body {
 	max-width: 1140px;
 	margin:auto;
-	font-family: 'Work Sans' ;
+	font-family: 'Work Sans', sans-serif ;
 	font-size: 14px;
 }
 header {
@@ -93,9 +93,14 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	margin-right: 30px;
+}
+nav li a{
+	color: black;
+	text-decoration: none;
 }
 
-li:hover {
+nav li a:hover {
 	color: #B1663C;
 }
 #introduction {
@@ -137,31 +142,54 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
-	width: 50%;
-margin: auto;
+.gallery figcaption{
+	margin-top: 10px;
+	font-family: 'Work Sans',sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 15px;
+
+
 }
-#contact > * {
+
+#login{
+	font-family: 'Work Sans',sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #3D3D3D;
+}
+.mot-de-passe-oublie{
+	text-decoration: underline;
+}
+#contact, #login {
+	width: 50%;
+	margin: auto;
+}
+#contact > *,#login > * {
 	text-align: center;
 
 }
-#contact h2{
+#contact h2,#login h2{
 	margin-bottom: 20px;
+	margin-top: 150px;
 }
-#contact form {
+#contact form,#login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, #login label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -170,7 +198,7 @@ margin: auto;
 }
 
 input[type="submit"]{
-	font-family: 'Syne';
+	font-family: 'Syne',sans-serif;
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
@@ -183,7 +211,8 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	margin-top: 400px;
 }
 
 .filtres{
@@ -193,7 +222,7 @@ footer nav ul {
 }
 
 .filtres button{
-	font-family: 'Syne';
+	font-family: 'Syne', sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 1.2em;
