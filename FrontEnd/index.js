@@ -1,3 +1,4 @@
+
 // Récupération des projets depuis l'API
 
 const reponseProjets = await fetch('http://localhost:5678/api/works/');
@@ -50,7 +51,7 @@ for (let categorie of categories){
     filtresElements.appendChild(boutonElement);
 }
 
-// gestion des boutons filtres categories
+// gestion des boutons filtres categories 
 
 const filtresElementsBoutons = document.querySelectorAll(".filtres button");
 
@@ -72,5 +73,34 @@ for (let elementBouton of filtresElementsBoutons) {
         
     });
 }
+
+
+// gestion administrateur -----------------------------------------------------------------------------
+
+function logout(){
+    localStorage.removeItem('token');
+    const adminElements = document.querySelectorAll('.admin');
+    for(const adminElement of adminElements){
+        adminElement.style.display="none";
+    }
+    document.querySelector('.non-admin').style.display="block";
+}
+
+const adminToken = localStorage.getItem('token');
+if (!adminToken){
+    logout();
+}
+else {
+
+    console.log(adminToken);
+
+    document.querySelector('.non-admin').style.display="none";
+    document.querySelector('.admin').addEventListener("click", function(){  
+    logout();
+    });
+}
+
+
+
 
 

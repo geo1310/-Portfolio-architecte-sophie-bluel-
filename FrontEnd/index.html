@@ -9,7 +9,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="index.js"></script>
+	<script src="https://kit.fontawesome.com/6d52193b89.js" crossorigin="anonymous"></script>
+	<script type="module" src="index.js" defer></script>
 </head>
 <body>
 <header>
@@ -18,7 +19,8 @@
 		<ul>
 			<li><b>projets</b></li>
 			<li><a href="#contact">contact</a></li>
-			<li><a href="login.html">login</a></li>
+			<li class="non-admin"><a href="login.html">login</a></li>
+			<li class="admin"><a href="#">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -27,8 +29,16 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<div class="admin edit-photo-introduction">
+				<i class="fa-solid fa-pen-to-square"></i>
+				modifier
+			</div>
 		</figure>
 		<article>
+			<div class="admin edit-texte-introduction">
+				<i class="fa-solid fa-pen-to-square"></i>
+				modifier
+			</div>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -36,7 +46,14 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<h2>
+			Mes Projets
+			<div class="admin edit-projets">
+				<i class="fa-solid fa-pen-to-square"></i>
+				modifier
+			</div>
+		</h2>
+		
 		<div class="filtres">
 			<button data-id="tous">Tous</button>
 		</div>

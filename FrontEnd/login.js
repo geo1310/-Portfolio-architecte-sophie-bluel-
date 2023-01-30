@@ -1,4 +1,3 @@
-
 const formulaireLogin = document.querySelector(".login");
 formulaireLogin.addEventListener("submit", async function (event) {
 
@@ -10,21 +9,33 @@ formulaireLogin.addEventListener("submit", async function (event) {
         password: event.target.querySelector("[name=mot-de-passe").value,
     };
 
-    console.log(login);
-
       // Création de la charge utile au format JSON
       const chargeUtile = JSON.stringify(login);
 
       // Appel de la fonction fetch
     
-      const reponse = await fetch("http://localhost:5678/api/users/login", {
+      await fetch("http://localhost:5678/api/users/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: chargeUtile
       })
-      const reponseToken = (reponse).json()
-      
-      console.log(reponseToken);
+      .then(reponse => reponse.json())
+      .then(function(reponseToken){
+        
+        if(reponseToken.token){
+            localStorage.setItem('token',reponseToken.token)
+            document.location.href="index.html";
+        }
+        else{
+            const loginElements = document.querySelector(".erreur-login");
+            loginElements.innerHTML="";
+            const loginElement = document.createElement('p');
+            loginElement.innerText="Erreur d' Authentification . ";
+            loginElements.appendChild(loginElement);
 
+        }
+      })     
 });
+
+
 
