@@ -1,47 +1,44 @@
 import { generationProjets } from "./projets.js";
-export async function gestionCategories(projets, galleryElements){
 
-// Récupération des Catégories
+export async function gestionCategories(projets){
 
-const reponseCategories = await fetch('http://localhost:5678/api/categories/');
-const categories = await reponseCategories.json();
+    // Récupération des Catégories
 
-// génération des boutons filtres categories
+    const reponseCategories = await fetch('http://localhost:5678/api/categories/');
+    const categories = await reponseCategories.json();
 
-const filtresElements = document.querySelector(".filtres")
+    // génération des boutons filtres categories
 
-for (let categorie of categories){
-    const boutonElement = document.createElement("button");
-    boutonElement.dataset.id = categorie.id;
-    boutonElement.innerText = categorie.name
+    const filtresElements = document.querySelector(".filtres");
 
-    filtresElements.appendChild(boutonElement);
-}
+    for (let categorie of categories){
+        const boutonElement = document.createElement("button");
+        boutonElement.dataset.id = categorie.id;
+        boutonElement.innerText = categorie.name;
 
-// gestion des boutons filtres categories 
+        filtresElements.appendChild(boutonElement);
+    }
 
-const filtresElementsBoutons = document.querySelectorAll(".filtres button");
+    // gestion des boutons filtres categories 
 
-for (let elementBouton of filtresElementsBoutons) {
-    elementBouton.addEventListener("click", async function (event) {
-        const id = event.target.dataset.id;
-        
-        if (id !== "tous"){
-            const projetsFiltres = projets.filter(function (projet) {
-                return projet.categoryId === parseInt(id);
-            });
-            galleryElements.innerHTML="";
+    const filtresElementsBoutons = document.querySelectorAll(".filtres button");
 
-            generationProjets(projetsFiltres,galleryElements);
-        }
-        else{
-            galleryElements.innerHTML="";
+    for (let elementBouton of filtresElementsBoutons) {
+        elementBouton.addEventListener("click", function (e) {
+            const id = e.target.dataset.id;
 
-            generationProjets(projets, galleryElements);
-        }
-        
-    });
-}
+            if (id !== "tous"){
+                const projetsFiltres = projets.filter(function (projet) {
+                    return projet.categoryId === parseInt(id);
+                });
+                generationProjets(projetsFiltres);
+            }
+            else{  
+                generationProjets(projets);
+            }
+
+        });
+    }
 
 
 }

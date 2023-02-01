@@ -1,6 +1,9 @@
 // Affichage des projets
 
-export function generationProjets(projets,galleryElements){   
+export function generationProjets(projets){
+
+    const galleryElements = document.querySelector(".gallery");
+    galleryElements.innerHTML="";
 
     for (const projet of projets) {
 
@@ -16,9 +19,8 @@ export function generationProjets(projets,galleryElements){
         // Rattachement des elements
         projetElements.appendChild(imageProjet);
         projetElements.appendChild(titreProjet);
-        galleryElements.appendChild(projetElements)
-    
+        galleryElements.appendChild(projetElements);
         
-}
+    };
 
-}
+};
