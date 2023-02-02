@@ -1,5 +1,6 @@
 import { generationProjets } from "./projets.js";
 import { gestionCategories } from "./categories.js";
+import { modale } from "./modale.js";
 
 // Récupération des projets depuis l'API
 
@@ -25,8 +26,6 @@ gestionCategories(projets);
 
 function logout(){
     localStorage.removeItem('token');
-
-    console.clear(); // test
     
     const adminElements = document.querySelectorAll('.admin');
     for(const adminElement of adminElements){
@@ -49,6 +48,8 @@ else {
     document.querySelector('.admin').addEventListener("click", function(){  
     logout();
     });
+
+    modale();
 }
 
 
