@@ -356,7 +356,7 @@ footer nav ul {
 	transform: translate(-50%, -50%);
 }
 
-.modal-button{
+.modal-button, .modal-button2{ 
 	font-family: 'Syne', sans-serif;
 	font-style: normal;
 	font-weight: 700;
@@ -373,14 +373,18 @@ footer nav ul {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	cursor: pointer;
 }
+.modal-button2{
+	background-color: #a7a7a7;
+	border: 1px solid #a7a7a7;
+}
 
 .del-gallery{
 	color: red;
 	
 }
 .modal-body{
-	
 	display: flex;
+	justify-content:flex-start;
 	flex-wrap: wrap;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -390,15 +394,28 @@ footer nav ul {
 	margin-right: 10px;
 }
 .vignette{
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 20px;
 }
-.vignette span{
+.edit-button{
 	text-align: left;
 	margin-top: 5px;
 	font-weight: 400;
 	font-size: 12px;
+}
+.fa-trash-can{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	background-color: #000;
+	color: #fff;
+	padding: 5px;
+}
+.edit-button:hover, .fa-trash-can:hover{
+	color: #B1663C;
+	cursor: pointer;
 }
 
 
