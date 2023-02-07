@@ -40,5 +40,5 @@ export async function gestionCategories(projets){
         });
     }
 
-
+    return categories
 }

@@ -24,7 +24,7 @@ formulaireLogin.addEventListener("submit", async function (event) {
     .then(function(reponseToken){
         
         if(reponseToken.token){
-            localStorage.setItem('token',reponseToken.token);
+            sessionStorage.setItem('token',reponseToken.token);
             document.location.href="index.html";
         }
         else{

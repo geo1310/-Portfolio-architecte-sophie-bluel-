@@ -19,24 +19,28 @@ generationProjets(projets);
 
 // gestion des categories
 
-gestionCategories(projets);
+const categories = gestionCategories(projets);
 
 
 // gestion administrateur -------------------------- creer module js ---------------------------------------------------
 
 function logout(){
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     
     const adminElements = document.querySelectorAll('.admin');
     for(const adminElement of adminElements){
         adminElement.style.display="none";
+        document.getElementById('header').style.marginTop="50px"
     }
-    document.querySelector('.non-admin').style.display=null;
+    document.querySelector('.edition-mode').style.display='none'
+    document.querySelectorAll('.non-admin').forEach(a => {
+        a.style.display=null;
+    })
 }
 
 // vérification de la présence d'un token admin
 
-const adminToken = localStorage.getItem('token');
+const adminToken = sessionStorage.getItem('token');
 if (!adminToken){
     logout();
 }
@@ -44,14 +48,21 @@ else {
 
     console.log(adminToken); // test
 
-    document.querySelector('.non-admin').style.display="none";
-    document.querySelector('.admin').addEventListener("click", function(){  
+    document.querySelectorAll('.admin').forEach(a => {
+        a.style.display=null;
+    })
+    document.querySelector('.edition-mode').style.display=null
+
+    document.querySelectorAll('.non-admin').forEach(a => {
+        a.style.display='none';
+    document.getElementById('header').style.marginTop="100px"
+    })
+    document.querySelector('.logout').addEventListener("click", function(){  
     logout();
     });
 
-    modale();
+    modale(projets, categories);
 }
-
 
 
 
