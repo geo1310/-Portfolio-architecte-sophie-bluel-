@@ -1,11 +1,6 @@
 import { generationProjets } from "./projets.js";
 
-export async function gestionCategories(projets){
-
-    // Récupération des Catégories
-
-    const reponseCategories = await fetch('http://localhost:5678/api/categories/');
-    const categories = await reponseCategories.json();
+export async function gestionCategories(projets, categories){
 
     // génération des boutons filtres categories
 
@@ -39,6 +34,5 @@ export async function gestionCategories(projets){
 
         });
     }
-
-    return categories
+    
 }

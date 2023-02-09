@@ -7,6 +7,11 @@ import { modale } from "./modale.js";
 const reponseProjets = await fetch('http://localhost:5678/api/works/');
 const projets = await reponseProjets.json();
 
+ // Récupération des Catégories
+
+ const reponseCategories = await fetch('http://localhost:5678/api/categories/');
+ const categories = await reponseCategories.json();
+
 // mettre en local storage le projet ???
 
 //
@@ -19,7 +24,7 @@ generationProjets(projets);
 
 // gestion des categories
 
-const categories = gestionCategories(projets);
+gestionCategories(projets, categories);
 
 
 // gestion administrateur -------------------------- creer module js ---------------------------------------------------
@@ -60,7 +65,8 @@ else {
     document.querySelector('.logout').addEventListener("click", function(){  
     logout();
     });
-
+    
+    // gestion de la fenetre modale
     modale(projets, categories);
 }
 
