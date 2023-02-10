@@ -20,6 +20,7 @@ export async function gestionCategories(projets, categories){
 
     for (let elementBouton of filtresElementsBoutons) {
         elementBouton.addEventListener("click", function (e) {
+           
             const id = e.target.dataset.id;
 
             if (id !== "tous"){
