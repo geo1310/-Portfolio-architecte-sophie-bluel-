@@ -84,11 +84,18 @@ export function modale(projets,categories){
         // suppression d'un projet
         
         document.querySelectorAll('.fa-trash-can').forEach(a => {
-            a.addEventListener('click', function(){
+            a.addEventListener('click', async function(){
 
-                console.log('suppression Id :' + a.dataset.id) //test
+                // requete fetch
 
-                // construction de la requete fetch
+                const reponse = await fetch(`http://localhost:5678/api/works/${a.dataset.id}`, {
+                method: "DELETE",
+                headers: { 
+                    "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+                },
+            }).then(reponse => reponse.json())
+
+            console.log(reponse) // test
 
 
             })  
@@ -113,6 +120,7 @@ export function modale(projets,categories){
 
         // creation des elements de la modale
 
+        // fenetre ajout photo
         const modalPhotoElement = document.createElement('div')
         modalPhotoElement.className='ajout-photo-preview'
 
@@ -197,7 +205,6 @@ export function modale(projets,categories){
         modalBody.appendChild(modalPhotoElement)
         modalBody.appendChild(modalForm)
         
-
         // formulaire
         
         const formAjoutPhoto = document.querySelector('.form-add-picture')
@@ -205,11 +212,10 @@ export function modale(projets,categories){
         // verification du formulaire
         formAjoutPhoto.addEventListener('input', function(){
            
-            const choixImage = document.querySelector("[name=image]").value
+            const choixImage = modalImage.src
             const choixTitre = document.querySelector("[name=titre]").value
 
-            modalImage.setAttribute('src', choixImage)
-            console.log(choixImage)
+            
 
             if (choixImage && choixTitre){
                 modalSubmit.style.backgroundColor='#1d6154'
@@ -219,10 +225,7 @@ export function modale(projets,categories){
                 modalSubmit.style.backgroundColor=null
                 modalSubmit.disabled = 1
             }
-           
-
         })
-
 
         // submit du formulaire
 
@@ -234,19 +237,34 @@ export function modale(projets,categories){
 
             event.preventDefault();
 
-            // Création de l’objet du login
+            // Construction de la requete fetch
 
             const ajoutPhotoObject = {
-                image: event.target.querySelector("[name=image]").value,
+                image: modalImage.src,
                 title: event.target.querySelector("[name=titre]").value,
-                category: parseInt(event.target.querySelector("[name=categorie]").value)
+                category: parseInt(event.target.querySelector("[name=categorie]").value),
             }
 
-            // Création de la charge utile au format JSON
+            // Création de la charge utile au format JSON string
             const chargeUtile = JSON.stringify(ajoutPhotoObject)
-            console.log(chargeUtile)
-            console.log(JSON.parse(chargeUtile))
+            console.log(chargeUtile) // test
+            //console.log(JSON.parse(chargeUtile)) //test
 
+            // requete fetch
+            
+            const reponse = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem('token')}`
+                },
+                body: chargeUtile
+            }).then(reponse => reponse.json())
+
+            console.log(reponse) // test
+        
+
+            // retour modal content1
             modalContent1Appel()
 
         })

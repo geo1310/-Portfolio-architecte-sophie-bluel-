@@ -51,8 +51,6 @@ if (!adminToken){
 }
 else {
 
-    console.log(adminToken); // test
-
     document.querySelectorAll('.admin').forEach(a => {
         a.style.display=null;
     })
